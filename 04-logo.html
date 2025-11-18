@@ -17,9 +17,8 @@
         .breadcrumb .current { color: #e8e8e8; font-weight: 600; }
         .btn-back { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: rgba(255,255,255,0.08); border: 2px solid #43B8FE; border-radius: 50px; color: #43B8FE; text-decoration: none; font-weight: 600; transition: all 0.3s; }
         .btn-back:hover { background: #43B8FE; color: #0a0a0a; }
-        .btn-modules { position: fixed; bottom: 30px; right: 30px; padding: 15px 25px; background: linear-gradient(135deg, #6861FF, #43B8FE); border: none; border-radius: 50px; color: white; font-weight: 700; cursor: pointer; box-shadow: 0 10px 30px rgba(67, 184, 254, 0.4); transition: all 0.3s; z-index: 99; font-size: 1rem; }
-        .btn-modules:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(67, 184, 254, 0.6); }
-        .main-content { max-width: 1400px; margin: 0 auto; padding: 40px; padding-bottom: 140px; min-height: calc(100vh - 80px); }
+
+        .main-content { max-width: 1400px; margin: 0 auto; padding: 40px; padding-bottom: 40px; min-height: calc(100vh - 80px); }
         .content-header { margin-bottom: 40px; }
         .content-header h1 { font-size: 3rem; color: #43B8FE; margin-bottom: 15px; }
         .content-header p { font-size: 1.2rem; color: #999; }
@@ -35,7 +34,7 @@
         .nav-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 60px; padding-top: 30px; padding-bottom: 20px; border-top: 1px solid rgba(255,255,255,0.1); flex-wrap: wrap; gap: 15px; }
         .nav-link { display: flex; align-items: center; gap: 10px; padding: 15px 25px; background: rgba(67, 184, 254, 0.1); border: 2px solid #43B8FE; border-radius: 10px; color: #43B8FE; text-decoration: none; font-weight: 600; transition: all 0.3s; }
         .nav-link:hover { background: #43B8FE; color: #0a0a0a; }
-        @media (max-width: 768px) { .main-content { padding: 20px; } .btn-modules { bottom: 80px; right: 15px; font-size: 0.85rem; padding: 12px 18px; } .nav-footer { flex-direction: column; gap: 10px; } .content-header h1 { font-size: 2rem; } .grid { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { .main-content { padding: 20px; }  .nav-footer { flex-direction: column; gap: 10px; } .content-header h1 { font-size: 2rem; } .grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -136,8 +135,5 @@
         </div>
     </main>
 
-    <button class="btn-modules" onclick="window.location.href='index.html'">
-        📚 Ver Todos Módulos
-    </button>
 </body>
 </html>
