@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glossário - Manual CobHub</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background: #0a0a0a; color: #e8e8e8; line-height: 1.7; }
+        .header { background: rgba(20, 20, 20, 0.95); border-bottom: 1px solid rgba(255,255,255,0.1); padding: 20px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px); }
+        .header-content { max-width: 1400px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+        .breadcrumb { display: flex; align-items: center; gap: 10px; font-size: 0.95rem; }
+        .breadcrumb a { color: #43B8FE; text-decoration: none; transition: color 0.3s; }
+        .breadcrumb a:hover { color: #6fd4ff; }
+        .breadcrumb span { color: #666; }
+        .breadcrumb .current { color: #e8e8e8; font-weight: 600; }
+        .btn-back { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: rgba(255,255,255,0.08); border: 2px solid #43B8FE; border-radius: 50px; color: #43B8FE; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .btn-back:hover { background: #43B8FE; color: #0a0a0a; }
+        .btn-modules { position: fixed; bottom: 30px; right: 30px; padding: 15px 25px; background: linear-gradient(135deg, #6861FF, #43B8FE); border: none; border-radius: 50px; color: white; font-weight: 700; cursor: pointer; box-shadow: 0 10px 30px rgba(67, 184, 254, 0.4); transition: all 0.3s; z-index: 99; font-size: 1rem; }
+        .btn-modules:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(67, 184, 254, 0.6); }
+        .main-content { max-width: 1400px; margin: 0 auto; padding: 40px; min-height: calc(100vh - 80px); }
+        .content-header { margin-bottom: 40px; }
+        .content-header h1 { font-size: 3rem; color: #43B8FE; margin-bottom: 15px; }
+        .content-header p { font-size: 1.2rem; color: #999; }
+        .card { background: rgba(25, 25, 25, 0.8); border: 1px solid rgba(255,255,255,0.12); border-radius: 15px; padding: 35px; margin-bottom: 30px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 20px 0; }
+        .box { background: rgba(30, 30, 30, 0.9); border: 2px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; transition: all 0.3s; }
+        .box:hover { border-color: #43B8FE; transform: translateY(-5px); box-shadow: 0 10px 25px rgba(67, 184, 254, 0.2); }
+        .box h5 { color: #6fd4ff; margin-bottom: 10px; font-size: 1.1rem; }
+        .box p { color: #d0d0d0; line-height: 1.7; }
+        .box strong { color: #43B8FE; }
+        .tab-container { background: rgba(25, 25, 25, 0.9); border-radius: 10px; overflow: hidden; margin: 20px 0; border: 1px solid rgba(255,255,255,0.12); }
+        .tab-buttons { display: flex; background: rgba(15, 15, 15, 0.9); border-bottom: 1px solid rgba(255,255,255,0.15); }
+        .tab-btn { flex: 1; padding: 15px; background: transparent; border: none; color: #999; cursor: pointer; font-weight: 600; transition: all 0.3s; font-family: 'Montserrat', sans-serif; }
+        .tab-btn.active { color: #6fd4ff; background: rgba(67, 184, 254, 0.15); }
+        .tab-btn:hover { color: #43B8FE; }
+        .tab-content { padding: 30px; display: none; }
+        .tab-content.active { display: block; }
+        .tab-content h3 { color: #8b85ff; margin-bottom: 20px; font-size: 1.8rem; }
+        .level-badge { display: inline-block; padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-left: 10px; }
+        .level-beginner { background: rgba(67, 184, 254, 0.25); color: #6fd4ff; border: 1px solid #43B8FE; }
+        .level-intermediate { background: rgba(104, 97, 255, 0.25); color: #a09dff; border: 1px solid #6861FF; }
+        .level-advanced { background: rgba(255, 100, 100, 0.25); color: #ff8a8a; border: 1px solid #ff6464; }
+        .nav-footer { display: flex; justify-content: space-between; margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .nav-link { display: flex; align-items: center; gap: 10px; padding: 15px 25px; background: rgba(67, 184, 254, 0.1); border: 2px solid #43B8FE; border-radius: 10px; color: #43B8FE; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .nav-link:hover { background: #43B8FE; color: #0a0a0a; }
+        @media (max-width: 768px) { .main-content { padding: 20px; } .content-header h1 { font-size: 2rem; } .grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="breadcrumb">
+                <a href="index.html">🏠 Home</a>
+                <span>/</span>
+                <span class="current">📖 Glossário</span>
+            </div>
+            <div class="header-actions">
+                <a href="index.html" class="btn-back">← Todos os Módulos</a>
+            </div>
+        </div>
+    </div>
+
+    <main class="main-content">
+        <div class="content-header">
+            <h1>📖 Glossário Completo</h1>
+            <p>Todos os termos técnicos explicados de forma simples</p>
+        </div>
+
+        <div class="card">
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" onclick="showTab('basico')">Básico</button>
+                    <button class="tab-btn" onclick="showTab('intermediario')">Intermediário</button>
+                    <button class="tab-btn" onclick="showTab('avancado')">Avançado</button>
+                </div>
+                
+                <div id="basico" class="tab-content active">
+                    <h3>Termos Básicos <span class="level-badge level-beginner">Iniciante</span></h3>
+                    <div class="grid">
+                        <div class="box">
+                            <h5>HTML</h5>
+                            <p><strong>O que é:</strong> Estrutura de uma página web<br>
+                            <strong>Analogia:</strong> Os tijolos de uma casa</p>
+                        </div>
+                        <div class="box">
+                            <h5>CSS</h5>
+                            <p><strong>O que é:</strong> Estilo visual da página<br>
+                            <strong>Analogia:</strong> A pintura e decoração da casa</p>
+                        </div>
+                        <div class="box">
+                            <h5>JavaScript</h5>
+                            <p><strong>O que é:</strong> Interatividade da página<br>
+                            <strong>Analogia:</strong> A eletricidade que faz tudo funcionar</p>
+                        </div>
+                        <div class="box">
+                            <h5>Código</h5>
+                            <p><strong>O que é:</strong> Instruções para o computador<br>
+                            <strong>Exemplo:</strong> Como uma receita de bolo</p>
+                        </div>
+                        <div class="box">
+                            <h5>Tag</h5>
+                            <p><strong>O que é:</strong> Marcação em HTML<br>
+                            <strong>Exemplo:</strong> &lt;h1&gt;Título&lt;/h1&gt;</p>
+                        </div>
+                        <div class="box">
+                            <h5>Atributo</h5>
+                            <p><strong>O que é:</strong> Propriedade de uma tag<br>
+                            <strong>Exemplo:</strong> class="botao"</p>
+                        </div>
+                        <div class="box">
+                            <h5>Elemento</h5>
+                            <p><strong>O que é:</strong> Parte da página (botão, texto, imagem)<br>
+                            <strong>Tipos:</strong> Botões, inputs, divs</p>
+                        </div>
+                        <div class="box">
+                            <h5>Função</h5>
+                            <p><strong>O que é:</strong> Bloco de código reutilizável<br>
+                            <strong>Exemplo:</strong> Calcular soma de dois números</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="intermediario" class="tab-content">
+                    <h3>Termos Intermediários <span class="level-badge level-intermediate">Intermediário</span></h3>
+                    <div class="grid">
+                        <div class="box">
+                            <h5>API</h5>
+                            <p><strong>O que é:</strong> Interface para comunicação entre sistemas<br>
+                            <strong>Uso:</strong> Conectar seu site com serviços externos</p>
+                        </div>
+                        <div class="box">
+                            <h5>Endpoint</h5>
+                            <p><strong>O que é:</strong> URL específica de uma API<br>
+                            <strong>Exemplo:</strong> /api/usuarios/buscar</p>
+                        </div>
+                        <div class="box">
+                            <h5>JSON</h5>
+                            <p><strong>O que é:</strong> Formato de dados estruturado<br>
+                            <strong>Uso:</strong> Trocar informações entre sistemas</p>
+                        </div>
+                        <div class="box">
+                            <h5>Framework</h5>
+                            <p><strong>O que é:</strong> Conjunto de ferramentas prontas<br>
+                            <strong>Exemplos:</strong> React, Vue.js, Bootstrap</p>
+                        </div>
+                        <div class="box">
+                            <h5>Biblioteca</h5>
+                            <p><strong>O que é:</strong> Código pronto para reutilizar<br>
+                            <strong>Exemplos:</strong> jQuery, Lodash, Axios</p>
+                        </div>
+                        <div class="box">
+                            <h5>Async/Await</h5>
+                            <p><strong>O que é:</strong> Forma de lidar com operações demoradas<br>
+                            <strong>Uso:</strong> Carregar dados sem travar a página</p>
+                        </div>
+                        <div class="box">
+                            <h5>Promise</h5>
+                            <p><strong>O que é:</strong> Promessa de resultado futuro<br>
+                            <strong>Uso:</strong> Requisições HTTP, operações assíncronas</p>
+                        </div>
+                        <div class="box">
+                            <h5>DOM</h5>
+                            <p><strong>O que é:</strong> Document Object Model<br>
+                            <strong>Uso:</strong> Manipular elementos da página com JS</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="avancado" class="tab-content">
+                    <h3>Termos Avançados <span class="level-badge level-advanced">Avançado</span></h3>
+                    <div class="grid">
+                        <div class="box">
+                            <h5>Webhook</h5>
+                            <p><strong>O que é:</strong> Notificação automática entre sistemas<br>
+                            <strong>Uso:</strong> Receber eventos em tempo real</p>
+                        </div>
+                        <div class="box">
+                            <h5>OAuth</h5>
+                            <p><strong>O que é:</strong> Protocolo de autenticação<br>
+                            <strong>Uso:</strong> Login com Google, Facebook</p>
+                        </div>
+                        <div class="box">
+                            <h5>SSR</h5>
+                            <p><strong>O que é:</strong> Server-Side Rendering<br>
+                            <strong>Uso:</strong> Renderizar páginas no servidor</p>
+                        </div>
+                        <div class="box">
+                            <h5>CI/CD</h5>
+                            <p><strong>O que é:</strong> Integração e Deploy Contínuo<br>
+                            <strong>Uso:</strong> Automatizar testes e publicações</p>
+                        </div>
+                        <div class="box">
+                            <h5>WebSocket</h5>
+                            <p><strong>O que é:</strong> Comunicação bidirecional em tempo real<br>
+                            <strong>Uso:</strong> Chats, notificações live</p>
+                        </div>
+                        <div class="box">
+                            <h5>Microservices</h5>
+                            <p><strong>O que é:</strong> Arquitetura de serviços independentes<br>
+                            <strong>Uso:</strong> Escalar partes específicas do sistema</p>
+                        </div>
+                        <div class="box">
+                            <h5>GraphQL</h5>
+                            <p><strong>O que é:</strong> Linguagem de consulta para APIs<br>
+                            <strong>Uso:</strong> Buscar apenas dados necessários</p>
+                        </div>
+                        <div class="box">
+                            <h5>Edge Computing</h5>
+                            <p><strong>O que é:</strong> Processamento próximo ao usuário<br>
+                            <strong>Uso:</strong> Reduzir latência e melhorar performance</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-footer">
+            <a href="01-introducao.html" class="nav-link prev">← Anterior: Introdução</a>
+            <a href="03-cores.html" class="nav-link next">Próximo: Cores →</a>
+        </div>
+    </main>
+
+    <button class="btn-modules" onclick="window.location.href='index.html'">
+        📚 Ver Todos Módulos
+    </button>
+
+    <script>
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

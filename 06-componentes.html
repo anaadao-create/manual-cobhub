@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Componentes - Manual CobHub</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background: #0a0a0a; color: #e8e8e8; line-height: 1.7; }
+        .header { background: rgba(20, 20, 20, 0.95); border-bottom: 1px solid rgba(255,255,255,0.1); padding: 20px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px); }
+        .header-content { max-width: 1400px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+        .breadcrumb { display: flex; align-items: center; gap: 10px; font-size: 0.95rem; }
+        .breadcrumb a { color: #43B8FE; text-decoration: none; transition: color 0.3s; }
+        .breadcrumb a:hover { color: #6fd4ff; }
+        .breadcrumb span { color: #666; }
+        .breadcrumb .current { color: #e8e8e8; font-weight: 600; }
+        .btn-back { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: rgba(255,255,255,0.08); border: 2px solid #43B8FE; border-radius: 50px; color: #43B8FE; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .btn-back:hover { background: #43B8FE; color: #0a0a0a; }
+        .btn-modules { position: fixed; bottom: 30px; right: 30px; padding: 15px 25px; background: linear-gradient(135deg, #6861FF, #43B8FE); border: none; border-radius: 50px; color: white; font-weight: 700; cursor: pointer; box-shadow: 0 10px 30px rgba(67, 184, 254, 0.4); transition: all 0.3s; z-index: 99; font-size: 1rem; }
+        .btn-modules:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(67, 184, 254, 0.6); }
+        .main-content { max-width: 1400px; margin: 0 auto; padding: 40px; min-height: calc(100vh - 80px); }
+        .content-header { margin-bottom: 40px; }
+        .content-header h1 { font-size: 3rem; color: #43B8FE; margin-bottom: 15px; }
+        .content-header p { font-size: 1.2rem; color: #999; }
+        .card { background: rgba(25, 25, 25, 0.8); border: 1px solid rgba(255,255,255,0.12); border-radius: 15px; padding: 35px; margin-bottom: 30px; }
+        .card h2 { font-size: 2rem; color: #8b85ff; margin-bottom: 20px; }
+        .card h3 { font-size: 1.5rem; color: #6fd4ff; margin: 25px 0 15px 0; }
+        .card h4 { color: #43B8FE; margin: 20px 0 10px 0; }
+        .component-preview { background: rgba(20, 20, 20, 0.8); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; padding: 30px; margin: 20px 0; text-align: center; }
+        .code { background: rgba(15, 15, 15, 0.95); padding: 20px; border-radius: 8px; font-family: 'Courier New', monospace; overflow-x: auto; margin: 15px 0; border: 1px solid rgba(255,255,255,0.15); position: relative; color: #d4d4d4; }
+        .code-copy { position: absolute; top: 10px; right: 10px; background: #43B8FE; border: none; padding: 6px 16px; border-radius: 5px; color: #0a0a0a; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: all 0.3s; }
+        .code-copy:hover { background: #6fd4ff; transform: scale(1.05); }
+        .btn-primary { background: linear-gradient(135deg, #6861FF, #43B8FE); color: white; border: none; padding: 14px 32px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-family: 'Montserrat', sans-serif; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(67, 184, 254, 0.4); }
+        .btn-secondary { background: transparent; color: #43B8FE; border: 2px solid #43B8FE; padding: 12px 30px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-family: 'Montserrat', sans-serif; }
+        .btn-secondary:hover { background: #43B8FE; color: white; }
+        .info-box { background: rgba(67, 184, 254, 0.1); border-left: 4px solid #43B8FE; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .success-box { background: rgba(100, 255, 100, 0.1); border-left: 4px solid #64ff64; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .warning-box { background: rgba(255, 100, 100, 0.1); border-left: 4px solid #ff6464; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .nav-footer { display: flex; justify-content: space-between; margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .nav-link { display: flex; align-items: center; gap: 10px; padding: 15px 25px; background: rgba(67, 184, 254, 0.1); border: 2px solid #43B8FE; border-radius: 10px; color: #43B8FE; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .nav-link:hover { background: #43B8FE; color: #0a0a0a; }
+        @media (max-width: 768px) { .main-content { padding: 20px; } .content-header h1 { font-size: 2rem; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="breadcrumb">
+                <a href="index.html">🏠 Home</a>
+                <span>/</span>
+                <span class="current">🧩 Componentes</span>
+            </div>
+            <div class="header-actions">
+                <a href="index.html" class="btn-back">← Todos os Módulos</a>
+            </div>
+        </div>
+    </div>
+
+    <main class="main-content">
+        <div class="content-header">
+            <h1>🧩 Biblioteca de Componentes</h1>
+            <p>Componentes prontos para copiar e usar nos seus projetos</p>
+        </div>
+
+        <div class="card">
+            <h2>Botões</h2>
+            
+            <h3>Botão Primário</h3>
+            <div class="component-preview">
+                <button class="btn-primary">Clique Aqui</button>
+            </div>
+            <div class="code">
+                <button class="code-copy" onclick="copyCode(this)">Copiar</button>
+.btn-primary {
+    background: linear-gradient(135deg, #6861FF, #43B8FE);
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(67, 184, 254, 0.4);
+}</div>
+
+            <h3>Botão Secundário</h3>
+            <div class="component-preview">
+                <button class="btn-secondary">Saiba Mais</button>
+            </div>
+            <div class="code">
+                <button class="code-copy" onclick="copyCode(this)">Copiar</button>
+.btn-secondary {
+    background: transparent;
+    color: #43B8FE;
+    border: 2px solid #43B8FE;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+    background: #43B8FE;
+    color: white;
+}</div>
+        </div>
+
+        <div class="card">
+            <h2>Cards</h2>
+            
+            <h3>Card Básico</h3>
+            <div class="component-preview">
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 30px; max-width: 400px; margin: 0 auto;">
+                    <h3 style="color: #43B8FE; margin-bottom: 15px;">Título do Card</h3>
+                    <p style="color: #e8e8e8;">Conteúdo do card com informações relevantes para o usuário.</p>
+                </div>
+            </div>
+            <div class="code">
+                <button class="code-copy" onclick="copyCode(this)">Copiar</button>
+.card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 30px;
+    transition: all 0.3s;
+}
+
+.card:hover {
+    border-color: rgba(67, 184, 254, 0.3);
+    box-shadow: 0 8px 24px rgba(67, 184, 254, 0.1);
+}</div>
+        </div>
+
+        <div class="card">
+            <h2>Inputs e Forms</h2>
+            
+            <h3>Input de Texto</h3>
+            <div class="component-preview">
+                <input type="text" placeholder="Digite seu nome" style="width: 100%; max-width: 400px; padding: 12px 20px; background: rgba(255,255,255,0.08); border: 2px solid rgba(255,255,255,0.15); border-radius: 8px; color: #e8e8e8; font-family: 'Montserrat', sans-serif;">
+            </div>
+            <div class="code">
+                <button class="code-copy" onclick="copyCode(this)">Copiar</button>
+.input-text {
+    width: 100%;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s;
+}
+
+.input-text:focus {
+    outline: none;
+    border-color: #43B8FE;
+    box-shadow: 0 0 0 3px rgba(67, 184, 254, 0.1);
+}</div>
+        </div>
+
+        <div class="card">
+            <h2>Alertas e Notificações</h2>
+            
+            <div class="info-box">
+                <h4>ℹ️ Informação</h4>
+                <p>Mensagem informativa para o usuário</p>
+            </div>
+            
+            <div class="success-box">
+                <h4>✅ Sucesso</h4>
+                <p>Operação concluída com sucesso!</p>
+            </div>
+            
+            <div class="warning-box">
+                <h4>⚠️ Atenção</h4>
+                <p>Algo precisa da sua atenção</p>
+            </div>
+
+            <div class="code">
+                <button class="code-copy" onclick="copyCode(this)">Copiar</button>
+.info-box {
+    background: rgba(67, 184, 254, 0.1);
+    border-left: 4px solid #43B8FE;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.success-box {
+    background: rgba(100, 255, 100, 0.1);
+    border-left: 4px solid #64ff64;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.warning-box {
+    background: rgba(255, 100, 100, 0.1);
+    border-left: 4px solid #ff6464;
+    padding: 20px;
+    border-radius: 8px;
+}</div>
+        </div>
+
+        <div class="nav-footer">
+            <a href="05-fontes.html" class="nav-link prev">← Anterior: Fontes</a>
+            <a href="07-guia-ia.html" class="nav-link next">Próximo: Guia IA →</a>
+        </div>
+    </main>
+
+    <button class="btn-modules" onclick="window.location.href='index.html'">
+        📚 Ver Todos Módulos
+    </button>
+
+    <script>
+        function copyCode(button) {
+            const code = button.parentElement.textContent.replace('Copiar', '').trim();
+            navigator.clipboard.writeText(code).then(() => {
+                button.textContent = '✓ Copiado!';
+                button.style.background = '#64ff64';
+                setTimeout(() => {
+                    button.textContent = 'Copiar';
+                    button.style.background = '#43B8FE';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

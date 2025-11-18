@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompts Prontos - Manual CobHub</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background: #0a0a0a; color: #e8e8e8; line-height: 1.7; }
+        .header { background: rgba(20, 20, 20, 0.95); border-bottom: 1px solid rgba(255,255,255,0.1); padding: 20px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px); }
+        .header-content { max-width: 1400px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+        .breadcrumb { display: flex; align-items: center; gap: 10px; font-size: 0.95rem; }
+        .breadcrumb a { color: #43B8FE; text-decoration: none; transition: color 0.3s; }
+        .breadcrumb a:hover { color: #6fd4ff; }
+        .breadcrumb span { color: #666; }
+        .breadcrumb .current { color: #e8e8e8; font-weight: 600; }
+        .btn-back { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: rgba(255,255,255,0.08); border: 2px solid #43B8FE; border-radius: 50px; color: #43B8FE; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .btn-back:hover { background: #43B8FE; color: #0a0a0a; }
+        .btn-modules { position: fixed; bottom: 30px; right: 30px; padding: 15px 25px; background: linear-gradient(135deg, #6861FF, #43B8FE); border: none; border-radius: 50px; color: white; font-weight: 700; cursor: pointer; box-shadow: 0 10px 30px rgba(67, 184, 254, 0.4); transition: all 0.3s; z-index: 99; font-size: 1rem; }
+        .btn-modules:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(67, 184, 254, 0.6); }
+        .main-content { max-width: 1400px; margin: 0 auto; padding: 40px; min-height: calc(100vh - 80px); }
+        .content-header { margin-bottom: 40px; }
+        .content-header h1 { font-size: 3rem; color: #43B8FE; margin-bottom: 15px; }
+        .content-header p { font-size: 1.2rem; color: #999; }
+        .card { background: rgba(25, 25, 25, 0.8); border: 1px solid rgba(255,255,255,0.12); border-radius: 15px; padding: 35px; margin-bottom: 30px; }
+        .card h2 { font-size: 2rem; color: #8b85ff; margin-bottom: 20px; }
+        .card h3 { font-size: 1.5rem; color: #6fd4ff; margin: 25px 0 15px 0; }
+        .code { background: rgba(15, 15, 15, 0.95); padding: 20px; border-radius: 8px; font-family: 'Courier New', monospace; overflow-x: auto; margin: 15px 0; border: 1px solid rgba(255,255,255,0.15); position: relative; color: #d4d4d4; white-space: pre-wrap; }
+        .code-copy { position: absolute; top: 10px; right: 10px; background: #43B8FE; border: none; padding: 6px 16px; border-radius: 5px; color: #0a0a0a; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: all 0.3s; }
+        .code-copy:hover { background: #6fd4ff; transform: scale(1.05); }
+        .info-box { background: rgba(67, 184, 254, 0.1); border-left: 4px solid #43B8FE; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .nav-footer { display: flex; justify-content: space-between; margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .nav-link { display: flex; align-items: center; gap: 10px; padding: 15px 25px; background: rgba(67, 184, 254, 0.1); border: 2px solid #43B8FE; border-radius: 10px; color: #43B8FE; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .nav-link:hover { background: #43B8FE; color: #0a0a0a; }
+        @media (max-width: 768px) { .main-content { padding: 20px; } .content-header h1 { font-size: 2rem; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="breadcrumb">
+                <a href="index.html">🏠 Home</a>
+                <span>/</span>
+                <span class="current">💬 Prompts Prontos</span>
+            </div>
+            <div class="header-actions">
+                <a href="index.html" class="btn-back">← Todos os Módulos</a>
+            </div>
+        </div>
+    </div>
+
+    <main class="main-content">
+        <div class="content-header">
+            <h1>💬 Prompts Prontos</h1>
+            <p>Templates testados e aprovados para diferentes situações</p>
+        </div>
+
+        <div class="info-box">
+            <h4>💡 Como Usar</h4>
+            <p>Clique no botão "Copiar" em qualquer prompt abaixo e cole na sua IA favorita (ChatGPT, Claude, etc). Adapte os valores entre [COLCHETES] para seu caso específico!</p>
+        </div>
+
+        <div class="card">
+            <h2>🎨 Landing Page</h2>
+            <div class="code"><button class="code-copy" onclick="copyCode(this)">Copiar</button>Crie uma landing page HTML completa para a CobHub com estas especificações:
+
+ESTRUTURA:
+- Header fixo com logo COBHUB e menu
+- Hero section com título impactante
+- Seção de benefícios (3 cards)
+- Call-to-action com botão principal
+- Footer com informações de contato
+
+ESTILO (IMPORTANTE):
+- Fundo: #0A0A0A
+- Cor primária: #43B8FE
+- Cor secundária: #6861FF
+- Fonte: 'Montserrat' para tudo
+- Títulos em ExtraBold (800)
+- Botão com gradiente: linear-gradient(135deg, #6861FF, #43B8FE)
+
+FUNCIONALIDADES:
+- Responsivo para mobile
+- Animações suaves ao scroll
+- Hover effects nos botões
+- Formulário de contato funcional
+
+Por favor, crie o código HTML completo com CSS embutido.</div>
+        </div>
+
+        <div class="card">
+            <h2>📊 Dashboard</h2>
+            <div class="code"><button class="code-copy" onclick="copyCode(this)">Copiar</button>Crie um dashboard web para a CobHub com:
+
+LAYOUT:
+- Sidebar lateral com navegação
+- Header superior com nome do usuário
+- Área principal com cards de métricas
+- Gráficos de dados (usar Chart.js)
+- Tabela de dados recentes
+
+CORES COBHUB:
+- Background: #0A0A0A
+- Sidebar: #2D2D2D
+- Cards: rgba(255,255,255,0.03)
+- Bordas: rgba(255,255,255,0.1)
+- Destaques em #43B8FE e #6861FF
+
+COMPONENTES:
+- Cards com ícones e números grandes
+- Gráfico de linha com gradiente
+- Tabela estilizada
+- Botões de ação com gradiente
+
+INTERATIVIDADE:
+- Menu responsivo (hamburguer no mobile)
+- Tooltips nos gráficos
+- Filtros de data
+- Exportação de dados
+
+Use HTML, CSS e JavaScript vanilla. Inclua CDN do Chart.js.</div>
+        </div>
+
+        <div class="card">
+            <h2>📜 Automação Google Sheets</h2>
+            <div class="code"><button class="code-copy" onclick="copyCode(this)">Copiar</button>Crie um script Google Apps Script que:
+
+FUNCIONALIDADE:
+- Leia dados de uma planilha específica
+- Processe e valide os dados
+- Faça cálculos automáticos
+- Envie email com relatório
+- Registre log de execução
+
+ESTRUTURA DO CÓDIGO:
+- Função principal com try/catch
+- Funções auxiliares bem documentadas
+- Constantes no início do código
+- Comentários explicando cada parte
+
+VALIDAÇÕES:
+- Verificar se a planilha existe
+- Validar formato dos dados
+- Tratar erros graciosamente
+- Retornar mensagens claras
+
+ESTILO:
+- Código limpo e organizado
+- Nomes de variáveis descritivos
+- Use const/let apropriadamente
+- Adicione exemplos de uso
+
+Por favor, crie o código comentado linha por linha para iniciantes.</div>
+        </div>
+
+        <div class="card">
+            <h2>🔌 API Integration</h2>
+            <div class="code"><button class="code-copy" onclick="copyCode(this)">Copiar</button>Crie uma integração com API externa:
+
+REQUISITOS:
+- Função para fazer requisição GET
+- Função para fazer requisição POST
+- Tratamento de erros da API
+- Retry logic em caso de falha
+- Cache de respostas para otimização
+
+SEGURANÇA:
+- Não expor API keys no código
+- Usar variáveis de ambiente
+- Validar entrada do usuário
+- Sanitizar dados antes de enviar
+
+ESTRUTURA:
+- Classe ou objeto com métodos
+- Async/await para requisições
+- Promise.all para múltiplas requisições
+- Timeout para requests longos
+
+RETORNO:
+- JSON padronizado
+- Status codes apropriados
+- Mensagens de erro claras
+- Dados formatados
+
+Use JavaScript moderno (ES6+) e inclua exemplos de uso.</div>
+        </div>
+
+        <div class="card">
+            <h2>🎯 Template Base Universal</h2>
+            <p style="margin-bottom: 20px;">Use este template para qualquer tipo de projeto!</p>
+            <div class="code"><button class="code-copy" onclick="copyCode(this)">Copiar</button>Crie [TIPO DE PROJETO] seguindo o padrão CobHub:
+
+IDENTIDADE VISUAL:
+- Cores: Azul #43B8FE, Roxo #6861FF, Fundo #0A0A0A
+- Fontes: Montserrat (principal), Rubik (secundária)
+- Gradiente: linear-gradient(135deg, #6861FF, #43B8FE)
+
+REQUISITOS FUNCIONAIS:
+[Liste aqui o que o projeto deve fazer]
+
+REQUISITOS TÉCNICOS:
+[Tecnologias, APIs, integrações necessárias]
+
+ESTRUTURA:
+[Descreva a organização do código/arquivos]
+
+ENTREGA:
+- Código completo e comentado
+- Instruções de uso
+- Exemplos práticos
+
+Desenvolva pensando em manutenibilidade e escalabilidade.</div>
+        </div>
+
+        <div class="nav-footer">
+            <a href="07-guia-ia.html" class="nav-link prev">← Anterior: Guia IA</a>
+            <a href="09-workflow-ia.html" class="nav-link next">Próximo: Workflow IA →</a>
+        </div>
+    </main>
+
+    <button class="btn-modules" onclick="window.location.href='index.html'">
+        📚 Ver Todos Módulos
+    </button>
+
+    <script>
+        function copyCode(button) {
+            const code = button.parentElement.textContent.replace('Copiar', '').trim();
+            navigator.clipboard.writeText(code).then(() => {
+                button.textContent = '✓ Copiado!';
+                button.style.background = '#64ff64';
+                setTimeout(() => {
+                    button.textContent = 'Copiar';
+                    button.style.background = '#43B8FE';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

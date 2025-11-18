@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursos - Manual CobHub</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background: #0a0a0a; color: #e8e8e8; line-height: 1.7; }
+        .header { background: rgba(20, 20, 20, 0.95); border-bottom: 1px solid rgba(255,255,255,0.1); padding: 20px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px); }
+        .header-content { max-width: 1400px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+        .breadcrumb { display: flex; align-items: center; gap: 10px; font-size: 0.95rem; }
+        .breadcrumb a { color: #43B8FE; text-decoration: none; transition: color 0.3s; }
+        .breadcrumb a:hover { color: #6fd4ff; }
+        .breadcrumb span { color: #666; }
+        .breadcrumb .current { color: #e8e8e8; font-weight: 600; }
+        .btn-back { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: rgba(255,255,255,0.08); border: 2px solid #43B8FE; border-radius: 50px; color: #43B8FE; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .btn-back:hover { background: #43B8FE; color: #0a0a0a; }
+        .btn-modules { position: fixed; bottom: 30px; right: 30px; padding: 15px 25px; background: linear-gradient(135deg, #6861FF, #43B8FE); border: none; border-radius: 50px; color: white; font-weight: 700; cursor: pointer; box-shadow: 0 10px 30px rgba(67, 184, 254, 0.4); transition: all 0.3s; z-index: 99; font-size: 1rem; }
+        .btn-modules:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(67, 184, 254, 0.6); }
+        .main-content { max-width: 1400px; margin: 0 auto; padding: 40px; min-height: calc(100vh - 80px); }
+        .content-header { margin-bottom: 40px; }
+        .content-header h1 { font-size: 3rem; color: #43B8FE; margin-bottom: 15px; }
+        .content-header p { font-size: 1.2rem; color: #999; }
+        .card { background: rgba(25, 25, 25, 0.8); border: 1px solid rgba(255,255,255,0.12); border-radius: 15px; padding: 35px; margin-bottom: 30px; }
+        .card h2 { font-size: 2rem; color: #8b85ff; margin-bottom: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 20px 0; }
+        .box { background: rgba(30, 30, 30, 0.9); border: 2px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; transition: all 0.3s; }
+        .box:hover { border-color: #43B8FE; transform: translateY(-5px); box-shadow: 0 10px 25px rgba(67, 184, 254, 0.2); }
+        .box h5 { color: #6fd4ff; margin-bottom: 10px; font-size: 1.1rem; }
+        .box p { color: #d0d0d0; line-height: 1.7; }
+        .box strong { color: #43B8FE; }
+        .info-box { background: rgba(67, 184, 254, 0.1); border-left: 4px solid #43B8FE; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .nav-footer { display: flex; justify-content: space-between; margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .nav-link { display: flex; align-items: center; gap: 10px; padding: 15px 25px; background: rgba(67, 184, 254, 0.1); border: 2px solid #43B8FE; border-radius: 10px; color: #43B8FE; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .nav-link:hover { background: #43B8FE; color: #0a0a0a; }
+        @media (max-width: 768px) { .main-content { padding: 20px; } .content-header h1 { font-size: 2rem; } .grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="breadcrumb">
+                <a href="index.html">🏠 Home</a>
+                <span>/</span>
+                <span class="current">🔗 Recursos</span>
+            </div>
+            <div class="header-actions">
+                <a href="index.html" class="btn-back">← Todos os Módulos</a>
+            </div>
+        </div>
+    </div>
+
+    <main class="main-content">
+        <div class="content-header">
+            <h1>🔗 Recursos e Ferramentas</h1>
+            <p>Links úteis, bibliotecas e ferramentas recomendadas</p>
+        </div>
+
+        <div class="card">
+            <h2>🎨 Ferramentas de Design</h2>
+            <div class="grid">
+                <div class="box">
+                    <h5>Figma</h5>
+                    <p>Design de interfaces e protótipos</p>
+                    <p style="color: #43B8FE; margin-top: 10px;">figma.com</p>
+                </div>
+                <div class="box">
+                    <h5>Coolors</h5>
+                    <p>Gerador de paletas de cores</p>
+                    <p style="color: #43B8FE; margin-top: 10px;">coolors.co</p>
+                </div>
+                <div class="box">
+                    <h5>Google Fonts</h5>
+                    <p>Biblioteca de fontes gratuitas</p>
+                    <p style="color: #43B8FE; margin-top: 10px;">fonts.google.com</p>
+                </div>
+                <div class="box">
+                    <h5>SVG Repo</h5>
+                    <p>Ícones SVG gratuitos</p>
+                    <p style="color: #43B8FE; margin-top: 10px;">svgrepo.com</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>💻 Desenvolvimento</h2>
+            <div class="grid">
+                <div class="box">
+                    <h5>VS Code</h5>
+                    <p><strong>Editor principal</strong></p>
+                    <p style="margin-top: 10px; font-size: 0.9rem; color: #999;">
+                        Extensões recomendadas: Live Server, Prettier, ESLint
+                    </p>
+                    <p style="color: #43B8FE; margin-top: 10px;">code.visualstudio.com</p>
+                </div>
+                <div class="box">
+                    <h5>Apps Script Editor</h5>
+                    <p><strong>IDE do Google</strong></p>
+                    <p style="margin-top: 10px; font-size: 0.9rem; color: #999;">
+                        Editor online para Apps Script
+                    </p>
+                    <p style="color: #43B8FE; margin-top: 10px;">script.google.com</p>
+                </div>
+                <div class="box">
+                    <h5>Chrome DevTools</h5>
+                    <p><strong>Debug e inspeção</strong></p>
+                    <p style="margin-top: 10px; font-size: 0.9rem; color: #999;">
+                        Ferramenta essencial para testar
+                    </p>
+                    <p style="color: #43B8FE; margin-top: 10px;">F12 no Chrome</p>
+                </div>
+                <div class="box">
+                    <h5>GitHub</h5>
+                    <p><strong>Versionamento</strong></p>
+                    <p style="margin-top: 10px; font-size: 0.9rem; color: #999;">
+                        Guardar e versionar código
+                    </p>
+                    <p style="color: #43B8FE; margin-top: 10px;">github.com</p>
+                </div>
+                <div class="box">
+                    <h5>Google Cloud Console</h5>
+                    <p><strong>Gestão GCP</strong></p>
+                    <p style="margin-top: 10px; font-size: 0.9rem; color: #999;">
+                        Deploy e monitoramento
+                    </p>
+                    <p style="color: #43B8FE; margin-top: 10px;">console.cloud.google.com</p>
+                </div>
+                <div class="box">
+                    <h5>CodePen</h5>
+                    <p><strong>Testes rápidos</strong></p>
+                    <p style="margin-top: 10px; font-size: 0.9rem; color: #999;">
+                        Prototipar ideias rapidamente
+                    </p>
+                    <p style="color: #43B8FE; margin-top: 10px;">codepen.io</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🤖 IAs Recomendadas</h2>
+            <div class="grid">
+                <div class="box">
+                    <h5>ChatGPT</h5>
+                    <p><strong>Melhor para:</strong> Código rápido, debugging, explicações</p>
+                    <p style="margin-top: 10px; font-size: 0.9rem; color: #999;">Use GPT-4 para projetos complexos</p>
+                </div>
+                <div class="box">
+                    <h5>Claude</h5>
+                    <p><strong>Melhor para:</strong> Projetos grandes, análise de código, documentação</p>
+                    <p style="margin-top: 10px; font-size: 0.9rem; color: #999;">Ótimo para contextos longos</p>
+                </div>
+                <div class="box">
+                    <h5>GitHub Copilot</h5>
+                    <p><strong>Melhor para:</strong> Autocompletar código no VS Code</p>
+                    <p style="margin-top: 10px; font-size: 0.9rem; color: #999;">Economiza muito tempo</p>
+                </div>
+                <div class="box">
+                    <h5>Gemini</h5>
+                    <p><strong>Melhor para:</strong> Integração com Google Workspace</p>
+                    <p style="margin-top: 10px; font-size: 0.9rem; color: #999;">Bom para Apps Script</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>✅ Validação e Testes</h2>
+            <div class="grid">
+                <div class="box">
+                    <h5>W3C Validator</h5>
+                    <p>Validar HTML</p>
+                    <p style="color: #43B8FE; margin-top: 10px;">validator.w3.org</p>
+                </div>
+                <div class="box">
+                    <h5>Lighthouse</h5>
+                    <p>Performance e acessibilidade</p>
+                    <p style="color: #43B8FE; margin-top: 10px;">Chrome DevTools</p>
+                </div>
+                <div class="box">
+                    <h5>WebAIM</h5>
+                    <p>Contraste de cores</p>
+                    <p style="color: #43B8FE; margin-top: 10px;">webaim.org/resources/contrastchecker</p>
+                </div>
+                <div class="box">
+                    <h5>BrowserStack</h5>
+                    <p>Testar em múltiplos navegadores</p>
+                    <p style="color: #43B8FE; margin-top: 10px;">browserstack.com</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📚 Aprendizado</h2>
+            <div class="grid">
+                <div class="box">
+                    <h5>MDN Web Docs</h5>
+                    <p>Documentação completa de web</p>
+                    <p style="color: #43B8FE; margin-top: 10px;">developer.mozilla.org</p>
+                </div>
+                <div class="box">
+                    <h5>freeCodeCamp</h5>
+                    <p>Cursos gratuitos de programação</p>
+                    <p style="color: #43B8FE; margin-top: 10px;">freecodecamp.org</p>
+                </div>
+                <div class="box">
+                    <h5>CSS-Tricks</h5>
+                    <p>Tutoriais e truques de CSS</p>
+                    <p style="color: #43B8FE; margin-top: 10px;">css-tricks.com</p>
+                </div>
+                <div class="box">
+                    <h5>Stack Overflow</h5>
+                    <p>Comunidade de desenvolvedores</p>
+                    <p style="color: #43B8FE; margin-top: 10px;">stackoverflow.com</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-box" style="margin-top: 40px;">
+            <h4>💡 Dica Final</h4>
+            <p style="font-size: 1.1rem; line-height: 1.8;">
+                Este manual é um documento vivo! Sempre que você aprender algo novo relacionado à CobHub, 
+                adicione aqui. Quanto mais completo, mais útil para toda a equipe e clientes.
+            </p>
+        </div>
+
+        <div class="nav-footer">
+            <a href="13-boas-praticas.html" class="nav-link prev">← Anterior: Boas Práticas</a>
+            <a href="index.html" class="nav-link next">Voltar ao Menu →</a>
+        </div>
+    </main>
+
+    <button class="btn-modules" onclick="window.location.href='index.html'">
+        📚 Ver Todos Módulos
+    </button>
+</body>
+</html>

@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introdução - Manual CobHub</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #0a0a0a;
+            color: #e8e8e8;
+            line-height: 1.7;
+        }
+
+        .header {
+            background: rgba(20, 20, 20, 0.95);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+
+        .breadcrumb a {
+            color: #43B8FE;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            color: #6fd4ff;
+        }
+
+        .breadcrumb span {
+            color: #666;
+        }
+
+        .breadcrumb .current {
+            color: #e8e8e8;
+            font-weight: 600;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.08);
+            border: 2px solid #43B8FE;
+            border-radius: 50px;
+            color: #43B8FE;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-back:hover {
+            background: #43B8FE;
+            color: #0a0a0a;
+        }
+
+        .btn-modules {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 15px 25px;
+            background: linear-gradient(135deg, #6861FF, #43B8FE);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(67, 184, 254, 0.4);
+            transition: all 0.3s;
+            z-index: 99;
+            font-size: 1rem;
+        }
+
+        .btn-modules:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(67, 184, 254, 0.6);
+        }
+
+        .layout {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .sidebar {
+            width: 280px;
+            padding: 30px 20px;
+            background: rgba(15, 15, 15, 0.9);
+            border-right: 1px solid rgba(255,255,255,0.1);
+            position: sticky;
+            top: 80px;
+            height: calc(100vh - 80px);
+            overflow-y: auto;
+        }
+
+        .sidebar-title {
+            font-size: 0.85rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 5px;
+        }
+
+        .sidebar-menu a {
+            display: block;
+            padding: 12px 15px;
+            color: #999;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .sidebar-menu a:hover {
+            background: rgba(67, 184, 254, 0.1);
+            color: #43B8FE;
+            padding-left: 20px;
+        }
+
+        .sidebar-menu a.active {
+            background: rgba(67, 184, 254, 0.15);
+            color: #43B8FE;
+            font-weight: 600;
+            border-left: 3px solid #43B8FE;
+        }
+
+        .sidebar-divider {
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+            margin: 20px 0;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            min-height: calc(100vh - 80px);
+        }
+
+        .content-header {
+            margin-bottom: 40px;
+        }
+
+        .content-header h1 {
+            font-size: 3rem;
+            color: #43B8FE;
+            margin-bottom: 15px;
+        }
+
+        .content-header p {
+            font-size: 1.2rem;
+            color: #999;
+        }
+
+        .card {
+            background: rgba(25, 25, 25, 0.8);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 15px;
+            padding: 35px;
+            margin-bottom: 30px;
+        }
+
+        .card h2 {
+            font-size: 2rem;
+            color: #8b85ff;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            color: #6fd4ff;
+            margin: 25px 0 15px 0;
+        }
+
+        .card h4 {
+            color: #43B8FE;
+            margin: 20px 0 10px 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .box {
+            background: rgba(30, 30, 30, 0.9);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+
+        .box:hover {
+            border-color: #43B8FE;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(67, 184, 254, 0.2);
+        }
+
+        .box h5 {
+            color: #6fd4ff;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .box p {
+            color: #d0d0d0;
+            line-height: 1.7;
+        }
+
+        .info-box {
+            background: rgba(67, 184, 254, 0.1);
+            border-left: 4px solid #43B8FE;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .success-box {
+            background: rgba(76, 175, 80, 0.1);
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .level-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .level-beginner {
+            background: rgba(67, 184, 254, 0.25);
+            color: #6fd4ff;
+            border: 1px solid #43B8FE;
+        }
+
+        .level-intermediate {
+            background: rgba(104, 97, 255, 0.25);
+            color: #a09dff;
+            border: 1px solid #6861FF;
+        }
+
+        .level-advanced {
+            background: rgba(255, 100, 100, 0.25);
+            color: #ff8a8a;
+            border: 1px solid #ff6464;
+        }
+
+        .nav-footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 25px;
+            background: rgba(67, 184, 254, 0.1);
+            border: 2px solid #43B8FE;
+            border-radius: 10px;
+            color: #43B8FE;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover {
+            background: #43B8FE;
+            color: #0a0a0a;
+        }
+
+        .nav-link.next:hover {
+            transform: translateX(5px);
+        }
+
+        .nav-link.prev:hover {
+            transform: translateX(-5px);
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 20px;
+            }
+            
+            .content-header h1 {
+                font-size: 2rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="breadcrumb">
+                <a href="index.html">🏠 Home</a>
+                <span>/</span>
+                <span class="current">👋 Introdução</span>
+            </div>
+            <div class="header-actions">
+                <a href="index.html" class="btn-back">← Todos os Módulos</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-title">Nesta Página</div>
+            <ul class="sidebar-menu">
+                <li><a href="#bem-vindo" class="active">Bem-vindo</a></li>
+                <li><a href="#sobre-cobhub">Sobre a CobHub</a></li>
+                <li><a href="#como-trabalhamos">Como Trabalhamos</a></li>
+                <li><a href="#stack">Stack Tecnológico</a></li>
+            </ul>
+
+            <div class="sidebar-divider"></div>
+
+            <div class="sidebar-title">Próximos Módulos</div>
+            <ul class="sidebar-menu">
+                <li><a href="02-glossario.html">📖 Glossário</a></li>
+                <li><a href="03-cores.html">🎨 Cores</a></li>
+                <li><a href="04-logo.html">🖼️ Logo</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="content-header">
+                <h1>👋 Bem-vindo ao Manual CobHub</h1>
+                <p>Tudo o que você precisa saber sobre desenvolvimento com IA</p>
+            </div>
+
+            <div class="card" id="bem-vindo">
+                <h2>📘 Manual Completo</h2>
+                <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                    Este manual foi criado para <strong>todos os níveis</strong>: desde quem nunca programou 
+                    até desenvolvedores experientes. Navegue pelas seções de acordo com seu conhecimento!
+                </p>
+
+                <div class="grid">
+                    <div class="box">
+                        <span class="level-badge level-beginner">Iniciante</span>
+                        <h5 style="margin-top: 15px;">Você vai aprender</h5>
+                        <p>Conceitos básicos, glossário, como usar cores e fontes da marca</p>
+                    </div>
+                    <div class="box">
+                        <span class="level-badge level-intermediate">Intermediário</span>
+                        <h5 style="margin-top: 15px;">Você vai dominar</h5>
+                        <p>Componentes prontos, integração com IA, melhores práticas</p>
+                    </div>
+                    <div class="box">
+                        <span class="level-badge level-advanced">Avançado</span>
+                        <h5 style="margin-top: 15px;">Você vai criar</h5>
+                        <p>Sistemas completos, otimizações, arquitetura de projetos</p>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h4>🎯 O que este manual oferece:</h4>
+                    <p style="margin-top: 10px; line-height: 2;">
+                        ✅ Identidade visual completa (cores, logo, tipografia)<br>
+                        ✅ Componentes prontos para copiar e usar<br>
+                        ✅ Guias detalhados de uso de IA<br>
+                        ✅ Exemplos práticos com código real<br>
+                        ✅ Boas práticas de desenvolvimento<br>
+                        ✅ Troubleshooting e dicas<br>
+                        ✅ Recursos e ferramentas recomendadas
+                    </p>
+                </div>
+            </div>
+
+            <div class="card" id="sobre-cobhub">
+                <h2>🚀 Sobre a CobHub</h2>
+                <div class="info-box">
+                    <h4>💡 Nosso Diferencial</h4>
+                    <p style="font-size: 1.1rem; line-height: 1.8;">
+                        A CobHub <strong>programa USANDO Inteligência Artificial</strong>. Não somos programadores tradicionais - 
+                        somos especialistas em <strong>engenharia de prompts</strong> e <strong>desenvolvimento assistido por IA</strong>. 
+                        Usamos ChatGPT, Claude e outras IAs como ferramentas principais para criar soluções em horas, 
+                        não semanas.
+                    </p>
+                </div>
+
+                <div class="success-box" style="margin-top: 20px;">
+                    <h4>⚡ Velocidade e Eficiência</h4>
+                    <p style="line-height: 1.8;">
+                        O que um programador tradicional faz em 1 semana, fazemos em 1 dia com IA. 
+                        O que levaria 1 mês, entregamos em 1 semana. <strong>Esse é o poder da IA aplicada corretamente.</strong>
+                    </p>
+                </div>
+            </div>
+
+            <div class="card" id="como-trabalhamos">
+                <h2>⚙️ Como Trabalhamos</h2>
+                <div class="grid">
+                    <div class="box">
+                        <h5>1️⃣ Cliente Define</h5>
+                        <p>Entendemos o problema e o que precisa ser feito</p>
+                    </div>
+                    <div class="box">
+                        <h5>2️⃣ IA Programa</h5>
+                        <p>Usamos prompts avançados para IA gerar o código</p>
+                    </div>
+                    <div class="box">
+                        <h5>3️⃣ Nós Refinamos</h5>
+                        <p>Testamos, ajustamos e otimizamos a solução</p>
+                    </div>
+                    <div class="box">
+                        <h5>4️⃣ Entregamos</h5>
+                        <p>Deploy rápido e funcional no GCP ou Apps Script</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" id="stack">
+                <h2>🛠️ Stack Tecnológico</h2>
+                <div class="grid">
+                    <div class="box">
+                        <h5>💻 Front-end</h5>
+                        <p>HTML5, CSS3, JavaScript puro</p>
+                    </div>
+                    <div class="box">
+                        <h5>🔧 Back-end</h5>
+                        <p>Google Apps Script (JavaScript), Node.js</p>
+                    </div>
+                    <div class="box">
+                        <h5>🤖 IA & Desenvolvimento</h5>
+                        <p>ChatGPT, Claude, GitHub Copilot</p>
+                    </div>
+                    <div class="box">
+                        <h5>☁️ Cloud & Deploy</h5>
+                        <p>Google Cloud Platform (Cloud Run, Storage), Apps Script Web Apps</p>
+                    </div>
+                    <div class="box">
+                        <h5>📊 Database & Data</h5>
+                        <p>Google Sheets (principal), Firestore</p>
+                    </div>
+                    <div class="box">
+                        <h5>⚙️ Ferramentas</h5>
+                        <p>VS Code, Apps Script Editor, Git/GitHub</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-footer">
+                <a href="index.html" class="nav-link prev">← Menu Principal</a>
+                <a href="02-glossario.html" class="nav-link next">Próximo: Glossário →</a>
+            </div>
+        </main>
+    </div>
+
+    <button class="btn-modules" onclick="window.location.href='index.html'">
+        📚 Ver Todos Módulos
+    </button>
+</body>
+</html>
